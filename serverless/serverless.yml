@@ -46,6 +46,10 @@ functions:
       - http:
           path: submit
           method: post
+          cors:
+            origins:
+              - 'http://localhost:3000'
+              - 'https://davidr.in'
     environment: 
       SES_ACCESS_KEY: ${ssm:/portfolio-ses-access-key~true}
       SES_SECRET: ${ssm:/portfolio-ses-secret-key~true}
@@ -81,3 +85,14 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'

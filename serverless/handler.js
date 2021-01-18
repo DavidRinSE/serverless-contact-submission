@@ -4,7 +4,8 @@ const sesHelper = require('./sesHelper')
 function createResponse(status, body) {
   return {
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
     },
     statusCode: status,
     body: JSON.stringify(body)
