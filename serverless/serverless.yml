@@ -3,7 +3,6 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  stage: ${opt:stage, 'develop'}
   region: us-east-2
   runtime: nodejs12.x
   memorySize: 128 # optional, in MB, default is 1024
